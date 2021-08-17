@@ -2,38 +2,37 @@
 ## functions do
 
 ## Write a short comment describing this function
-
-  
-  # Took original code, changed 'm' to 'struggle', and "mean" to "solve"
-  makeCacheMatrix <- function(x = matrix()) {
-    struggle <- NULL
-    set <- function(y) {
-      # will have a 2nd function written inside of makeCacheMatrix with paramters
-      x <<- y
-      struggle <<- NULL
-    }
-    get <- function() x
-    # get/create the value of the matrix
-    setsolve <- function(solve) struggle <<- solve
-    getsolve <- function() s
-    list(set = set, get = get,
-         setsolve = setsolve,
-         getsolve = getsolve)
-    
+## updated default example code - 'm' is now 'Q' and 'mean' is now 'Solve'
+# makeCacheMatrix creates a matrix and inverse
+makeCacheMatrix <- function(x = matrix()) {
+  Q <- NULL
+  #set inverse as Null
+  set <- function(y) {
+    x <<- y
+    Q <<- NULL
   }
-
-  ##Took original code, changed 'm' to 'i', and "mean" to "solve"
-  cacheSolve <- function(x, ...) {
-    ## Return a matrix that is the inverse of 'x'
-    struggle <- x$getsolve()
-    if(!is.null(s)) {
-      message("getting cached data")
-      return(struggle)
-    }
-    data <- x$get()
-    struggle <- solve(data, ...)
-    x$setsolve(struggle)
-    s
-  }
+  get <- function() x
+  #function to get the matrix
+  setsolve <- function(solve) Q <<- solve
+  getsolve <- function() Q
+  list(set = set, get = get,
+       setsolve = setsolve,
+       getsolve = getsolve)
   
+}
 
+## updated default example code - 'm' is now 'Q' and mean is now 'Solve'
+cacheSolve <- function(x, ...) {
+  
+  Q <- x$getsolve()
+  if(!is.null(Q)) {
+    message("getting cached data")
+    #if the inverse already calculated will just pull from the cache
+    return(Q)
+    ## if not already calculated, create inverse return a matrix that is the inverse of 'x'
+  }
+  data <- x$get()
+  Q <- solve(data, ...)
+  x$setsolve(Q)
+  Q
+}
